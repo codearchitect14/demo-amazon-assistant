@@ -1,0 +1,50 @@
+[flake8]
+# Exclude directories that shouldn't be linted
+exclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    env,
+    .env,
+    .venv,
+    build,
+    dist,
+    *.egg-info,
+    .eggs,
+    .tox,
+    .pytest_cache,
+    .coverage,
+    htmlcov,
+    .mypy_cache,
+    .ruff_cache,
+    .cache,
+    node_modules,
+    .DS_Store
+
+# Maximum line length
+max-line-length = 88
+
+# Ignore specific error codes
+ignore = 
+    E203,  # whitespace before ':'
+    W503,  # line break before binary operator
+    F401,  # imported but unused
+    F403,  # wildcard import
+    F405,  # name may be undefined, or defined from star imports
+    E501,  # line too long (handled by max-line-length)
+
+# Show source code for each error
+show-source = True
+
+# Show the error codes
+show-pep8 = False
+
+# Count errors
+count = True
+
+# Statistics
+statistics = True
+
+# Output format
+format = %(path)s:%(row)d:%(col)d: %(code)s %(text)s 

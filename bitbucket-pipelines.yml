@@ -1,0 +1,96 @@
+image: python:3.11
+
+definitions:
+  caches:
+    pip: ~/.cache/pip
+    node: node_modules
+  services:
+    docker:
+      memory: 2048
+
+pipelines:
+  default:
+    - step:
+        name: "Code Quality & Security"
+        caches:
+          - pip
+        script:
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install --upgrade pip setuptools wheel
+          - pip install -r requirements.txt
+
+        artifacts:
+          - bandit-report.json
+          - safety-report.json
+
+    - step:
+        name: "Unit Tests"
+        caches:
+          - pip
+        script:
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install --upgrade pip setuptools wheel
+          - pip install -r requirements.txt
+          - pip install pytest pytest-cov pytest-asyncio
+          - pytest tests/ --cov=. --cov-report=xml --cov-report=html --cov-report=term-missing
+        artifacts:
+          - coverage.xml
+          - htmlcov/
+
+    - step:
+        name: "Integration Tests"
+        caches:
+          - pip
+        script:
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install --upgrade pip setuptools wheel
+          - pip install -r requirements.txt
+          - pip install pytest-asyncio httpx
+          - python -m pytest tests/test_api.py -v
+          - python -m pytest tests/test_rag.py -v
+
+    - step:
+        name: "Performance Tests"
+        caches:
+          - pip
+        script:
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install --upgrade pip setuptools wheel
+          - pip install -r requirements.txt
+          - pip install locust
+          - python -c "from rag.rag_pipeline import RAGPipeline; print('RAG Pipeline import successful')"
+          - python -c "from app.api import app; print('FastAPI app import successful')"
+
+  pull-requests:
+    '**':
+      - step:
+          name: "PR Quality Gate"
+          caches:
+            - pip
+          script:
+            - python -m venv venv
+            - source venv/bin/activate
+            - pip install --upgrade pip setuptools wheel
+            - pip install -r requirements.txt
+
+          artifacts:
+            - bandit-report.json
+
+  custom:
+    production-deploy:
+      - step:
+          name: "Production Deployment"
+          deployment: production
+          script:
+            - python -m venv venv
+            - source venv/bin/activate
+            - pip install --upgrade pip setuptools wheel
+            - pip install -r requirements.txt
+            - pip install docker-compose
+            - docker-compose build
+            - docker-compose up -d
+            - echo "Production deployment completed"
