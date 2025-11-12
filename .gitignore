@@ -1,13 +1,17 @@
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.egg
 *.egg-info/
 build/
 dist/
-.env
-.env.*
 .venv/
 venv/
+env/
+ENV/
+.envrc/
+.ipynb_checkpoints/
 
 # Node / Next.js
 node_modules/
@@ -19,179 +23,22 @@ pnpm-debug.log*
 out/
 frontend/.next/
 
-# IDE / Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs / Misc
-*.log
-dump.rdb
-coverage/
-# === Python ===
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Virtual environments
-venv/
-venv_10/
-venv_11/
-venv_12/
-.envrc/ 
-.venv/
-ENV/
-env/
-env.bak/
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/ç
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-pip-wheel-metadata/
-*.whl
-
-# PyInstaller
-# Usually these files are written by a python script from a template
-*.manifest
-*.spec
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# pytest logs
-pytestdebug.log
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# PEP 582; used by some tools like pdm
-__pypackages__/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# === Environment Files ===
-
-
-# === IDE / Editor config ===
-
-# VS Code
-.vscode/
-
-# PyCharm
-.idea/
-*.iml
-
-# Sublime Text
-*.sublime-workspace
-*.sublime-project
-
-# Eclipse
-.project
-.metadata/
-*.pydevproject
-
-# === OS generated ===
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# === Logs ===
+# Logs / Coverage
 *.log
 logs/
 *.out
 *.err
+coverage/
+dump.rdb
 
-# === Others ===
-
-# Mac system files
-*.DS_Store
-
-# Windows image caches
-ehthumbs.db
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
+# IDE / Editor
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
 *.swp
-*.bak
-
-# Large files (media, models, etc.)
-*.mp4
-*.avi
-*.mov
-*.flv
-*.mkv
-*.wmv
-*.zip
-*.tar.gz
-*.rar
-*.7z
-*.tar
-*.gz
-*.bz2
-*.h5
-*.pth
-*.pt
-*.onnx
-*.joblib
-
-# LFS tracked files (if you use Git LFS)
-*.lfs
-
-# === Node.js (if hybrid project) ===
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# === Docker ===
-*.pid
-*.seed
-docker-compose.override.yml
+*.swo
+.DS_Store
+Thumbs.db
+config.bat
